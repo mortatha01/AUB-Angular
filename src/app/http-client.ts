@@ -52,26 +52,6 @@ export class ApplicationHttpClient {
             }));
     }
 
-    logIn(username: string, password: string) {
-        const httpOptions = {
-            headers: new HttpHeaders({'Content-Type': 'application/json'}),
-            observe: 'response' as 'response'
-        };
-        const params = new HttpParams().set('username', username);
-        return this.http.post<any>('/cms/v1/framework/Auth/Login'
-            , {username: username, password: password}, httpOptions
-        ).pipe(
-            map(res => {
-                if (res.headers) {
-                    debugger;
-                    console.log('interceptor header keys: ', res.headers.keys());
-                }
-                return res;
-            }), catchError((err: any) => {
-                return err;
-            }));
-    }
-
     checkAuth(res) {
         console.log('PIPE');
         console.log(res);
